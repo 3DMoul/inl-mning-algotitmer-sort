@@ -8,7 +8,7 @@ namespace menuElement
 {
 	const std::vector<std::string> main = { " Event ", " List " , " Sort ",
 											" Search "," Help ", " EXIT " };
-	const std::vector<std::string> Event = {};
+	const std::vector<std::string> Eventtype = { "TemperatureReading", "ButtonPress", "MotionRecord" };
 }
 
 namespace menu
