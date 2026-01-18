@@ -126,13 +126,17 @@
   <ItemGroup>
     <ClCompile Include="eventmanager.cpp" />
     <ClCompile Include="interface.cpp" />
+    <ClCompile Include="list.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="sortmanager.cpp" />
     <ClCompile Include="system.cpp" />
     <ClCompile Include="utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="eventmanager.h" />
     <ClInclude Include="interface.h" />
+    <ClInclude Include="list.h" />
+    <ClInclude Include="sortmanager.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="utility.h" />
   </ItemGroup>

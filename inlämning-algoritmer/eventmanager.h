@@ -10,7 +10,6 @@ public:
     Event(EventType type, std::string eventadjectiv, int Id, double MinSimulation, double MaxSimulation);
     virtual ~Event() = default;
     virtual double Read() const;
-    std::string name() const;
     double minValue() const;
     double maxValue() const;
     std::string Geteventadjectiv() const;

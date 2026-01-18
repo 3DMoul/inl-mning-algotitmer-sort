@@ -30,6 +30,12 @@
     <ClCompile Include="eventmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sortmanager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interface.h">
@@ -42,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="eventmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sortmanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
