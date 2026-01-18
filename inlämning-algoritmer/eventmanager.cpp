@@ -1,12 +1,9 @@
 #include "eventmanager.h"
 
 Event::Event(EventType type, std::string eventadjectiv, int Id, double MinSimulation, double MaxSimulation)
-	: type_(type), eventId_(Id), eventadjectiv(eventadjectiv), MinSimulation(MinSimulation), MaxSimulation(MaxSimulation) {
-};
-double Event::Read() const
-{
+    : type_(type), eventId_(Id), eventadjectiv(eventadjectiv), MinSimulation(MinSimulation), MaxSimulation(MaxSimulation) {
+    // Constructor body (if needed)
 }
-
 double Event::Read() const
 {
 	return 0.0;
