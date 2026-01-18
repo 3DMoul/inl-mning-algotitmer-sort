@@ -13,7 +13,7 @@ public:
     std::string name() const;
     double minValue() const;
     double maxValue() const;
-    std::string GetUnitOfeventadjectiv() const;
+    std::string Geteventadjectiv() const;
     EventType type() const;
 private:
     int timestamp_;

@@ -19,7 +19,7 @@ double Event::maxValue() const
 	return 0.0;
 }
 
-std::string Event::GetUnitOfeventadjectiv() const
+std::string Event::Geteventadjectiv() const
 {
 	return std::string();
 }
