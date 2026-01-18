@@ -6,8 +6,10 @@
 void menu::printWholeMenu(std::function<void(const std::vector<std::string>&)> menuPrintFunc, const std::vector<std::string>& menu)
 {
 	menu::clear_interface();
-
+	std::cout << "-------------Main Menu-------------" << std::endl;
 	menuPrintFunc(menu);
+	std::cout << "-----------------------------------" << std::endl;
+
 }
 
 // Ensure this implementation is in the menu namespace
