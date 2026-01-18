@@ -1,6 +1,9 @@
 #include "eventmanager.h"
 
-Event::Event(EventType type, std::string UnitOfMeasurment, std::string SensorName, double MinSimulation, double MaxSimulation)
+Event::Event(EventType type, std::string eventadjectiv, int Id, double MinSimulation, double MaxSimulation)
+	: type_(type), eventId_(Id), eventadjectiv(eventadjectiv), MinSimulation(MinSimulation), MaxSimulation(MaxSimulation) {
+};
+double Event::Read() const
 {
 }
 
@@ -31,8 +34,8 @@ EventType Event::type() const
 
 
 
-eventType::TemperatureReading::TemperatureReading(std::string NewName, double MinSimulation, double MaxSimulation)
-	: Event(EventType::TemperatureReading, "C", NewName, MinSimulation, MaxSimulation) {
+eventType::TemperatureReading::TemperatureReading(int Id, double MinSimulation, double MaxSimulation)
+	: Event(EventType::TemperatureReading, "C", Id, MinSimulation, MaxSimulation) {
 };
 
 double eventType::TemperatureReading::Read() const
@@ -40,8 +43,8 @@ double eventType::TemperatureReading::Read() const
 	return 0.0;
 }
 
-eventType::ButtonPress::ButtonPress(std::string NewName, double MinSimulation, double MaxSimulation)
-	: Event(EventType::ButtonPress, "Time pressed", NewName, MinSimulation, MaxSimulation) {
+eventType::ButtonPress::ButtonPress(int Id, double MinSimulation, double MaxSimulation)
+	: Event(EventType::ButtonPress, "Time pressed", Id, MinSimulation, MaxSimulation) {
 }
 double eventType::ButtonPress::Read() const
 {
@@ -49,8 +52,8 @@ double eventType::ButtonPress::Read() const
 }
 ;
 
-eventType::MotionRecord::MotionRecord(std::string NewName, double MinSimulation, double MaxSimulation)
-	: Event(EventType::MotionRecord, "Activity class", NewName, MinSimulation, MaxSimulation) {
+eventType::MotionRecord::MotionRecord(int Id, double MinSimulation, double MaxSimulation)
+	: Event(EventType::MotionRecord, "Activity class", Id, MinSimulation, MaxSimulation) {
 }
 double eventType::MotionRecord::Read() const
 {
