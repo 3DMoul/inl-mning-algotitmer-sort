@@ -5,7 +5,6 @@ void systemManager::run()
 	menu::menuStatus menustatus;
 	do
 	{
-
 		menu::printWholeMenu(menu::printMenuOptions, menuElement::main);
 		menu::selectMenuItem(menustatus);
 	} 

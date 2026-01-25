@@ -15,7 +15,7 @@ public:
     std::string Geteventadjectiv() const;
     EventType type() const;
 private:
-    int timestamp_;
+    std::string timestamp_;
     int eventId_;
     double MinSimulation, MaxSimulation;
     std::string eventadjectiv;

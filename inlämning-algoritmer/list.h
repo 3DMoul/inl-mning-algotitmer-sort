@@ -5,11 +5,11 @@
 
 struct List
 {
-    int timestamp_;
+    std::string timestamp_;
     int eventId_;
+    int value_;
     double MinSimulation, MaxSimulation;
     std::string eventadjectiv;
-    int value_;
     EventType type_;
 	List* rest;
 };
