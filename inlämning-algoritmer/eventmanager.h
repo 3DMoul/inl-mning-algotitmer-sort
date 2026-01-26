@@ -1,13 +1,13 @@
 #pragma once
-#include "iostream"
-#include "string"
-
-enum class EventType { TemperatureReading = 1, ButtonPress = 2, MotionRecord = 3 };
+#include <iostream>
+#include <string>
+#include "utility.h"
+enum class EventType { TEMP_EVENT = 1, BUTTON_EVENT = 2, MOTION_EVENT = 3 };
 
 class Event
 {
 public:
-    Event(EventType type, std::string eventadjectiv, int Id, double MinSimulation, double MaxSimulation);
+    Event(EventType type, std::string eventAdjectiv, int Id, double MinSimulation, double MaxSimulation);
     virtual ~Event() = default;
     virtual double Read() const;
     double minValue() const;
@@ -29,18 +29,15 @@ namespace eventType
     {
     public:
         TemperatureReading(int Id, double MinSimulation, double MaxSimulation);
-        double Read() const override;
     };
     class ButtonPress : public Event
     {
     public:
         ButtonPress(int Id, double MinSimulation, double MaxSimulation);
-        double Read() const override;
     };
     class MotionRecord : public Event
     {
     public:
         MotionRecord(int Id, double MinSimulation, double MaxSimulation);
-        double Read() const override;
     };
 }

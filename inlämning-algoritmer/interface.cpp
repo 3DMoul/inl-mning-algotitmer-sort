@@ -13,13 +13,13 @@ void menu::printWholeMenu(std::function<void(const std::vector<std::string>&)> m
 }
 void menu::printMenuOptions(const std::vector<std::string>& menuItems)
 {
-	int startFrom = 1; // match switch cases (1..N)
+	int startFrom = 1;
 	for (auto& item : menuItems)
 	{
 		if (startFrom < size(menuItems))
-			std::cout << "[" << startFrom++ << "]" << item << std::endl;
+			std::cout << "[" << startFrom++ << "]" << " " << item << std::endl;
 		else
-			std::cout << "[" << 0 << "]" << item << std::endl;
+			std::cout << "[" << 0 << "]" << " " << item << std::endl;
 	}
 }
 // take menuStatus by reference so exitStatus() affects the original
@@ -50,7 +50,7 @@ void menu::selectMenuItem(menuStatus& exit)
 		break;
 	}
 }
-//Clears text from before this was used
+// clears text from before this was used
 void menu::clear_interface() { std::cout << "\033c"; }
-//Makes exit status true making the program end
+// makes exit status true making the program end
 void menu::menuStatus::exitStatus(){ EXIT_Menu = true; }

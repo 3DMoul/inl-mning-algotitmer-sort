@@ -6,9 +6,9 @@
 
 namespace menuElement
 {
-	const std::vector<std::string> main = { " Event ", " List " , " Sort ",
-											" Search "," Help ", " EXIT " };
-	const std::vector<std::string> Eventtype = { "TemperatureReading", "ButtonPress", "MotionRecord" };
+	const std::vector<std::string> main = { "Event", "List" , "Sort",
+											"Search","Help", "EXIT" };
+	const std::vector<std::string> Eventtype = { "TEMPERATURE", "BUTTON", "MOTION" };
 }
 
 namespace menu

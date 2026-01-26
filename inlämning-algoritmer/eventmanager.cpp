@@ -30,30 +30,15 @@ EventType Event::type() const
 }
 
 
-
 eventType::TemperatureReading::TemperatureReading(int Id, double MinSimulation, double MaxSimulation)
-	: Event(EventType::TemperatureReading, "C", Id, MinSimulation, MaxSimulation) {
+	: Event(EventType::TEMP_EVENT, "C", Id, MinSimulation, MaxSimulation) {
 };
 
-double eventType::TemperatureReading::Read() const
-{
-	return 0.0;
-}
 
 eventType::ButtonPress::ButtonPress(int Id, double MinSimulation, double MaxSimulation)
-	: Event(EventType::ButtonPress, "Time pressed", Id, MinSimulation, MaxSimulation) {
-}
-double eventType::ButtonPress::Read() const
-{
-	return 0.0;
-}
-;
+	: Event(EventType::BUTTON_EVENT, "Time pressed", Id, MinSimulation, MaxSimulation) {
+};
 
 eventType::MotionRecord::MotionRecord(int Id, double MinSimulation, double MaxSimulation)
-	: Event(EventType::MotionRecord, "Activity class", Id, MinSimulation, MaxSimulation) {
-}
-double eventType::MotionRecord::Read() const
-{
-	return 0.0;
-}
-;
+	: Event(EventType::MOTION_EVENT, "Activity class", Id, MinSimulation, MaxSimulation) {
+};

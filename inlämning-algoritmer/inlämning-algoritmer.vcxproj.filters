@@ -30,7 +30,7 @@
     <ClCompile Include="eventmanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="list.cpp">
+    <ClCompile Include="eventlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sortmanager.cpp">
@@ -50,7 +50,7 @@
     <ClInclude Include="eventmanager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="list.h">
+    <ClInclude Include="eventlist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sortmanager.h">

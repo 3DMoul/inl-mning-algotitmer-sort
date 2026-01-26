@@ -1,11 +1,8 @@
 #pragma once
 #include "iostream"
 
-namespace bubbleSort
+namespace sort_Manager
 {
 	void Bubblesort();
-}
-namespace quickSort
-{
 	void Quicksort();
 }

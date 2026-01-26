@@ -14,3 +14,13 @@ int utilitys::inputValidation()
     }
     return Choice;
 }
+double utilitys::randomDecimalValue(double Min, double Max)
+{
+    double f = (double)rand() / RAND_MAX;
+    double RandomTempreture = Min + f * (Max - Min);
+    return RandomTempreture;
+}
+int utilitys::randomValue(int Max, int Min)
+{
+    return rand() % (Min - Max) + Max;
+}
