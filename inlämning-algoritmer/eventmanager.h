@@ -28,16 +28,16 @@ namespace event_Type
     class TemperatureReading : public Event
     {
     public:
-        TemperatureReading(std::string timeStamp, int Id, double MinSimulation, double MaxSimulation);
+        TemperatureReading(std::string timeStamp, int Id);
     };
     class ButtonPress : public Event
     {
     public:
-        ButtonPress(std::string timeStamp, int Id, double MinSimulation, double MaxSimulation);
+        ButtonPress(std::string timeStamp, int Id);
     };
     class MotionRecord : public Event
     {
     public:
-        MotionRecord(std::string timeStamp, int Id, double MinSimulation, double MaxSimulation);
+        MotionRecord(std::string timeStamp, int Id);
     };
 }

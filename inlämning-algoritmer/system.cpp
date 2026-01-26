@@ -27,6 +27,7 @@ void system_Actions::creat_Event()
 	menu::printEventTypes(menu_Element::Eventtype);
 	std::cout << "Enter: " << std::endl;
 	auto event = static_cast<EventType>(utilitys::inputValidation());
-	auto newSensor = makeEvent(event );
-
+	std::cout << ""
+	auto newEvent = makeEvent(event );
+	
 }
