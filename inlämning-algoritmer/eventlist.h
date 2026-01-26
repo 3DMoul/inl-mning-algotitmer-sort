@@ -5,6 +5,6 @@
 
 struct List
 {
-    
+	Event* currentEvent;
 	List* next;
 };

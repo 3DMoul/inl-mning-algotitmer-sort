@@ -7,7 +7,7 @@ enum class EventType { TEMP_EVENT = 1, BUTTON_EVENT = 2, MOTION_EVENT = 3 };
 class Event
 {
 public:
-    Event(EventType type, std::string eventAdjectiv, int Id, double MinSimulation, double MaxSimulation);
+    Event(EventType type, std::string eventAdjectiv, std::string timeStamp, int Id, double MinSimulation, double MaxSimulation);
     virtual ~Event() = default;
     virtual double Read() const;
     double minValue() const;

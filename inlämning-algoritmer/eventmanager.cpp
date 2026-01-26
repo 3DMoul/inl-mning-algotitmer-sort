@@ -1,6 +1,6 @@
 #include "eventmanager.h"
 
-Event::Event(EventType type, std::string eventadjectiv, int Id, double MinSimulation, double MaxSimulation)
+Event::Event(EventType type, std::string eventadjectiv, std::string timeStamp, int Id, double MinSimulation, double MaxSimulation)
     : type_(type), eventId_(Id), eventadjectiv(eventadjectiv), MinSimulation(MinSimulation), MaxSimulation(MaxSimulation) {
     // Constructor body (if needed)
 }

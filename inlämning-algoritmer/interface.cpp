@@ -14,13 +14,24 @@ void menu::printWholeMenu(std::function<void(const std::vector<std::string>&)> m
 void menu::printMenuOptions(const std::vector<std::string>& menuItems)
 {
 	int startFrom = 1;
-	for (auto& item : menuItems)
+	if (size(menuItems) >= 4)
 	{
-		if (startFrom < size(menuItems))
-			std::cout << "[" << startFrom++ << "]" << " " << item << std::endl;
-		else
-			std::cout << "[" << 0 << "]" << " " << item << std::endl;
+		for (auto& item : menuItems)
+		{
+			if (startFrom < size(menuItems))
+				std::cout << "[" << startFrom++ << "]" << " " << item << std::endl;
+			else
+				std::cout << "[" << 0 << "]" << " " << item << std::endl;
+		}
 	}
+	else
+	{
+		for (auto& item : menuItems)
+		{
+				std::cout << "[" << startFrom++ << "]" << " " << item << std::endl;
+		}
+	}
+
 }
 // take menuStatus by reference so exitStatus() affects the original
 void menu::selectMenuItem(menuStatus& exit)

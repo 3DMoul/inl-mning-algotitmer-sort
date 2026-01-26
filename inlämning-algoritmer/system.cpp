@@ -1,5 +1,5 @@
 #include "system.h"
-std::unique_ptr<Event> MakeEvent(EventType type, const std::string& newname)
+std::unique_ptr<Event> makeEvent(EventType type, const std::string& newname)
 {
 	switch (type)
 	{
@@ -25,7 +25,8 @@ void creat_Event()
 {
 	std::cout << "What type of event is happening" << std::endl;
 	menu::printMenuOptions(menuElement::Eventtype);
-
-
+	std::cout << "Enter: " << std::endl;
+	auto event = static_cast<EventType>(utilitys::inputValidation());
+	auto newSensor = makeEvent(event );
 
 }
