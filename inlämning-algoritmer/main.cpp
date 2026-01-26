@@ -6,5 +6,5 @@
 
 int main()
 {
-	systemManager::run();
+	system_Manager::run();
 }

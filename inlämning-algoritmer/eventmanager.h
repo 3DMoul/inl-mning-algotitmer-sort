@@ -23,21 +23,21 @@ private:
     EventType type_;
 };
 
-namespace eventType
+namespace event_Type
 {
     class TemperatureReading : public Event
     {
     public:
-        TemperatureReading(int Id, double MinSimulation, double MaxSimulation);
+        TemperatureReading(std::string timeStamp, int Id, double MinSimulation, double MaxSimulation);
     };
     class ButtonPress : public Event
     {
     public:
-        ButtonPress(int Id, double MinSimulation, double MaxSimulation);
+        ButtonPress(std::string timeStamp, int Id, double MinSimulation, double MaxSimulation);
     };
     class MotionRecord : public Event
     {
     public:
-        MotionRecord(int Id, double MinSimulation, double MaxSimulation);
+        MotionRecord(std::string timeStamp, int Id, double MinSimulation, double MaxSimulation);
     };
 }
