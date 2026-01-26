@@ -3,8 +3,9 @@
 #include "string"
 #include "eventmanager.h"
 
-struct List
+struct event_List
 {
 	Event* currentEvent;
-	List* next;
+	event_List* next;
 };
+
