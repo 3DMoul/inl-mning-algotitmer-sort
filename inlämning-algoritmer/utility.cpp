@@ -25,14 +25,9 @@ int utilitys::randomValue(int Max, int Min)
     return rand() % (Min - Max) + Max;
 }
 
-std::string utilitys::TimeGenerator()
+int utilitys::TimeGenerator()
 {
     time_t TimeStamp;
     time(&TimeStamp);
-    struct tm timeInfo;
-    localtime_s(&timeInfo, &TimeStamp);
-    char temp[26];
-    asctime_s(temp, sizeof(temp), &timeInfo);
-    temp[strlen(temp) - 1] = '\0'; // tar bort newline
-    return temp;
+    return TimeStamp;
 }
