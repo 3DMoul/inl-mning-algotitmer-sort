@@ -7,15 +7,14 @@ enum class EventType { TEMP_EVENT = 1, BUTTON_EVENT = 2, MOTION_EVENT = 3 };
 class Event
 {
 public:
-    Event(EventType type, std::string eventAdjectiv, int timeStamp, int Id, double MinSimulation, double MaxSimulation);
+    Event(EventType type, std::string eventAdjectiv, int timeStamp, int Id, double value_);
     virtual ~Event() = default;
-    virtual double getValue() const;
+    void printEvent();
 private:
     int timestamp_;
     int eventId_;
-    double MinSimulation, MaxSimulation;
     std::string eventadjectiv;
-    int value_;
+    double value_;
     EventType type_;
 };
 
@@ -24,16 +23,16 @@ namespace event_Type
     class TemperatureReading : public Event
     {
     public:
-        TemperatureReading(int timeStamp, int Id);
+        TemperatureReading(int timeStamp, int Id, double newValue_);
     };
     class ButtonPress : public Event
     {
     public:
-        ButtonPress(int timeStamp, int Id);
+        ButtonPress(int timeStamp, int Id, double newValue_);
     };
     class MotionRecord : public Event
     {
     public:
-        MotionRecord(int timeStamp, int Id);
+        MotionRecord(int timeStamp, int Id, double newValue_);
     };
 }
