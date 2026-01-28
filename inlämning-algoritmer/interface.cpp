@@ -4,7 +4,6 @@
 
 void menu::printWholeMenu(std::function<void(const std::vector<std::string>&)> menuPrintFunc, const std::vector<std::string>& menu)
 {
-	menu::clear_interface();
 	std::cout << "-------------Main Menu-------------" << std::endl;
 	menuPrintFunc(menu);
 	std::cout << "-----------------------------------" << std::endl;
@@ -33,9 +32,10 @@ void menu::printEventTypes(const std::vector<std::string>& eventItems)
 	}
 }
 // take menuStatus by reference so exitStatus() affects the original
-void menu::selectMenuItem(menuStatus& exit, event_List& List)
+void menu::selectMenuItem(menuStatus& exit, event_List* List)
 {
 	auto choice = static_cast<menu::menuChoice>(utilitys::inputValidation());
+	menu::clear_interface();
 	switch (choice)
 	{
 	case menu::menuChoice::Event:

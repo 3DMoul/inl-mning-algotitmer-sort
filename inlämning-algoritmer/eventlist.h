@@ -11,13 +11,8 @@ struct event_List
 
 namespace list_Functions
 {
-    static event_List* createEventList(Event* E) 
-    {
-        event_List* newEvent = (event_List*)std::malloc(sizeof(event_List));
-        if (!newEvent) 
-            return nullptr;
-        newEvent->currentEvent = E;
-        newEvent->next = nullptr;
-        return newEvent;
-    }
+    event_List* createEventList(Event* E);
+    
+    int listSize(event_List* head);
+    
 }

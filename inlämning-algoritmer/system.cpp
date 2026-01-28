@@ -1,25 +1,26 @@
 #include "system.h"
 
-std::unique_ptr<Event> makeEvent(EventType type, int timeStamp)
+static std::unique_ptr<Event> makeEvent(EventType type, event_List* L, int timeStamp)
 {
+	double temp = 0.0;
 	switch (type)
 	{
 	case EventType::TEMP_EVENT: 
-		double temp = utilitys::randomDecimalValue(0, 60);
-		return std::make_unique<event_Type::TemperatureReading>(timeStamp, temp);
+		temp = utilitys::randomDecimalValue(0, 60);
+		return std::make_unique<event_Type::TemperatureReading>(timeStamp, list_Functions::listSize(L) + 1, temp);
 	case EventType::BUTTON_EVENT:
-		double temp = utilitys::randomValue(1, 10);
-		return std::make_unique<event_Type::ButtonPress>(timeStamp, temp);
+		temp = utilitys::randomValue(1, 10);
+		return std::make_unique<event_Type::ButtonPress>(timeStamp, list_Functions::listSize(L) + 1, temp);
 	case EventType::MOTION_EVENT : 
-		double temp = utilitys::randomValue(20, 60);
-		return std::make_unique<event_Type::MotionRecord>(timeStamp, temp);
+		temp = utilitys::randomValue(20, 60);
+		return std::make_unique<event_Type::MotionRecord>(timeStamp, list_Functions::listSize(L) + 1, temp);
 
 	default: return nullptr;
 	}
 }
 void system_Manager::run()
 {
-	event_List List;
+	event_List* List = NULL;
 	menu::menuStatus menustatus;
 	do
 	{
@@ -29,7 +30,7 @@ void system_Manager::run()
 	while (!menustatus.EXIT_Menu);
 }
 
-void system_Actions::creat_Event(event_List& L)
+void system_Actions::creat_Event(event_List* L)
 {
 	std::cout << "What type of event is happening" << std::endl;
 	menu::printEventTypes(menu_Element::Eventtype);
@@ -42,9 +43,9 @@ void system_Actions::creat_Event(event_List& L)
 	for (int i = 0; i < iterations;	i++)
 	{
 		int timeStamp = utilitys::TimeGenerator();
-		auto newEvent = makeEvent(event, timeStamp);
+		auto newEvent = makeEvent(event, L , timeStamp);
 		newEvent->printEvent();
-		L
+		list_Functions::createEventList(newEvent.get());
 	}
 
 

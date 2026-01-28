@@ -10,6 +10,6 @@ namespace utilitys
 
 	int randomValue(int Max, int Min);
 
-	static int TimeGenerator();
+	int TimeGenerator();
 
 }
