@@ -1,5 +1,4 @@
 #include "interface.h"
-#include "utility.h"
 
 
 
@@ -34,13 +33,13 @@ void menu::printEventTypes(const std::vector<std::string>& eventItems)
 	}
 }
 // take menuStatus by reference so exitStatus() affects the original
-void menu::selectMenuItem(menuStatus& exit)
+void menu::selectMenuItem(menuStatus& exit, event_List& List)
 {
 	auto choice = static_cast<menu::menuChoice>(utilitys::inputValidation());
 	switch (choice)
 	{
 	case menu::menuChoice::Event:
-		creat_Event();
+		system_Actions::creat_Event(List);
 		break;
 	case menu::menuChoice::Sort:
 

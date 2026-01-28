@@ -1,7 +1,10 @@
 #pragma once
-#include "iostream"
-#include "string"
-#include "vector"
+#include "utility.h"
+#include "eventlist.h"
+#include "system.h"
+#include <iostream>
+#include <string>
+#include <vector>
 #include <functional>
 
 namespace menu_Element
@@ -20,7 +23,7 @@ namespace menu
 	void printEventTypes(const std::vector<std::string>& eventItems);
 	// take menuStatus by reference so changes propagate to caller
 	// took help from copilot for this one
-	void selectMenuItem(struct menuStatus& exit);
+	void selectMenuItem(struct menuStatus& exit, event_List& List);
 	void clear_interface();
 	struct menuStatus
 	{

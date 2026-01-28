@@ -1,6 +1,6 @@
 #pragma once
-#include "iostream"
-#include "string"
+#include <iostream>
+#include <string>
 #include "eventmanager.h"
 
 struct event_List

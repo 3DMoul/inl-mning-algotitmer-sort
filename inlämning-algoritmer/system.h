@@ -11,5 +11,5 @@ namespace system_Manager
 
 namespace system_Actions
 {
-	void creat_Event();
+	void creat_Event(event_List& L);
 }

@@ -19,16 +19,17 @@ std::unique_ptr<Event> makeEvent(EventType type, int timeStamp)
 }
 void system_Manager::run()
 {
+	event_List List;
 	menu::menuStatus menustatus;
 	do
 	{
 		menu::printWholeMenu(menu::printMenuOptions, menu_Element::main);
-		menu::selectMenuItem(menustatus);
+		menu::selectMenuItem(menustatus, List);
 	} 
 	while (!menustatus.EXIT_Menu);
 }
 
-void system_Actions::creat_Event()
+void system_Actions::creat_Event(event_List& L)
 {
 	std::cout << "What type of event is happening" << std::endl;
 	menu::printEventTypes(menu_Element::Eventtype);
@@ -43,7 +44,7 @@ void system_Actions::creat_Event()
 		int timeStamp = utilitys::TimeGenerator();
 		auto newEvent = makeEvent(event, timeStamp);
 		newEvent->printEvent();
-		createEventList();
+		L
 	}
 
 
