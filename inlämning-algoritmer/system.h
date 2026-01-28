@@ -9,6 +9,6 @@ namespace system_Manager{
 }
 
 namespace system_Actions{
-	void creat_Event(event_List* L);
+	void creat_Event(event_List*& L);
 	void printList(event_List* head);
 }

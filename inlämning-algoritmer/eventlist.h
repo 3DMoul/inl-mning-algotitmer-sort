@@ -14,10 +14,10 @@ struct event_List{
 };
 
 namespace list_Functions{
-    event_List* createEventList(Event* E);
+    event_List* createEventList(Event*& E);
     
     int listSize(event_List* head);
     
-    event_List* insertAtFront(event_List* head, Event* new_Event);
+    event_List* insertAtFront(event_List*& head, Event*& new_Event);
     
 }

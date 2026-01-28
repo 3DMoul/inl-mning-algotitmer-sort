@@ -28,7 +28,7 @@ void system_Manager::run(){
 	while (!menustatus.EXIT_Menu);
 }
 
-void system_Actions::creat_Event(event_List* L){
+void system_Actions::creat_Event(event_List*& L){
 	std::cout << "What type of event is happening" << std::endl;
 	menu::printEventTypes(menu_Element::Eventtype);
 	std::cout << "Enter: " << std::endl;
@@ -37,12 +37,13 @@ void system_Actions::creat_Event(event_List* L){
 	int iterations = 0;
 	std::cin >> iterations;
 
-	for (int i = 0; i < iterations;	i++){
+	for (int i = 0; i < iterations; i++) {
 		int timeStamp = utilitys::TimeGenerator();
-		auto newEvent = makeEvent(event, L , timeStamp);
+		auto newEvent = makeEvent(event, L, timeStamp);
 		newEvent->printEvent();
-		L = list_Functions::insertAtFront(L, newEvent.get());
-		//list_Functions::createEventList(newEvent.get());
+		Event* rawEventPtr = newEvent.release(); // Transfer ownership
+		L = list_Functions::insertAtFront(L, rawEventPtr);
+		// list_Functions::createEventList(rawEventPtr);
 	}
 
 

@@ -6,11 +6,9 @@ void menu::printWholeMenu(std::function<void(const std::vector<std::string>&)> m
 	std::cout << "-------------Main Menu-------------" << std::endl;
 	menuPrintFunc(menu);
 	std::cout << "-----------------------------------" << std::endl;
-
 }
 void menu::printMenuOptions(const std::vector<std::string>& menuItems){
 	int startFrom = 1;
-	
 	for (auto& item : menuItems){
 		if (startFrom < size(menuItems))
 			std::cout << "[" << startFrom++ << "]" << " " << item << std::endl;
@@ -27,8 +25,10 @@ void menu::printEventTypes(const std::vector<std::string>& eventItems){
 	}
 }
 // take menuStatus by reference so exitStatus() affects the original
-void menu::selectMenuItem(menuStatus& exit, event_List* List){
+void menu::selectMenuItem(menuStatus& exit, event_List*& List){
+	std::cout << list_Functions::listSize(List) << std::endl;
 	auto choice = static_cast<menu::menuChoice>(utilitys::inputValidation());
+
 	menu::clear_interface();
 	switch (choice){
 	case menu::menuChoice::Event:

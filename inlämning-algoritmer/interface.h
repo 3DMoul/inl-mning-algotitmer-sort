@@ -21,7 +21,7 @@ namespace menu{
 	void printEventTypes(const std::vector<std::string>& eventItems);
 	// take menuStatus by reference so changes propagate to caller
 	// took help from copilot for this one
-	void selectMenuItem(struct menuStatus& exit, event_List* List);
+	void selectMenuItem(struct menuStatus& exit, event_List*& List);
 	void clear_interface();
 	struct menuStatus{
 		bool EXIT_Menu = false;
