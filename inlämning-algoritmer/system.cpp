@@ -43,7 +43,6 @@ void system_Actions::creat_Event(event_List*& L){
 		newEvent->printEvent();
 		Event* rawEventPtr = newEvent.release(); // Transfer ownership
 		L = list_Functions::insertAtFront(L, rawEventPtr);
-		// list_Functions::createEventList(rawEventPtr);
 	}
 
 

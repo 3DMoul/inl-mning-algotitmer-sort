@@ -13,7 +13,6 @@ void sort_Manager::selectionSort(int array[]) {
 		array[min] = temp;
 	}
 }
-
 void sort_Manager::quickSort(int array[], int start, int end) {
 	if (end <= start) { return; }
 	int pivot = partition(array, start, end);

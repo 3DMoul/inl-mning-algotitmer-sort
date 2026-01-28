@@ -14,7 +14,6 @@ struct event_List{
 };
 
 namespace list_Functions{
-    event_List* createEventList(Event*& E);
     
     int listSize(event_List* head);
     

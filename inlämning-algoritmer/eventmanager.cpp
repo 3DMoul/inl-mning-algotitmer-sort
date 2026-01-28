@@ -10,6 +10,31 @@ void Event::printEvent(){
 	std::cout << value_ << " " << eventadjectiv << std::endl;
 }
 
+int Event::get_TimeStamp_()
+{
+	return timestamp_;
+}
+
+int Event::get_EventId_()
+{
+	return eventId_;
+}
+
+std::string Event::get_EventAdjectiv()
+{
+	return eventadjectiv;
+}
+
+double Event::get_Value_()
+{
+	return value_;
+}
+
+EventType Event::get_Type_()
+{
+	return type_;
+}
+
 event_Type::TemperatureReading::TemperatureReading(int timeStamp, int Id, double newValue_)
 	: Event(EventType::TEMP_EVENT, "C", timeStamp, Id, newValue_) {
 }

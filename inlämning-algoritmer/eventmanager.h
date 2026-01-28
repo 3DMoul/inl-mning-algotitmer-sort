@@ -9,6 +9,11 @@ public:
     Event(EventType type, std::string eventAdjectiv, int timeStamp, int Id, double value_);
     virtual ~Event() = default;
     void printEvent();
+    int get_TimeStamp_();
+    int get_EventId_();
+    std::string get_EventAdjectiv();
+    double get_Value_();
+    EventType get_Type_();
 private:
     int timestamp_;
     int eventId_;
