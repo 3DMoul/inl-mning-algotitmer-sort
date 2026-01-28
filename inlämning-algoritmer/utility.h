@@ -2,8 +2,7 @@
 #include <iostream>
 
 
-namespace utilitys
-{
+namespace utilitys{
 	int inputValidation();
 
 	double randomDecimalValue(double Min, double Max);

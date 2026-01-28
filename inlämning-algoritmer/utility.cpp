@@ -1,7 +1,6 @@
 #include "utility.h"
 
-int utilitys::inputValidation()
-{
+int utilitys::inputValidation(){
     std::cout << "choose input: ";
     int Choice;
     while (!(std::cin >> Choice)) //if you input something that is not a int it 
@@ -14,19 +13,16 @@ int utilitys::inputValidation()
     }
     return Choice;
 }
-double utilitys::randomDecimalValue(double Min, double Max)
-{
+double utilitys::randomDecimalValue(double Min, double Max){
     double f = (double)rand() / RAND_MAX;
     double RandomTempreture = Min + f * (Max - Min);
     return RandomTempreture;
 }
-int utilitys::randomValue(int Max, int Min)
-{
+int utilitys::randomValue(int Max, int Min){
     return rand() % (Min - Max) + Max;
 }
 
-int utilitys::TimeGenerator()
-{
+int utilitys::TimeGenerator(){
     time_t TimeStamp;
     time(&TimeStamp);
     return TimeStamp;

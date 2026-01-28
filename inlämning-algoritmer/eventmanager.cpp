@@ -4,8 +4,7 @@ Event::Event(EventType type, std::string eventadjectiv, int timeStamp, int Id, d
     : type_(type), eventId_(Id), eventadjectiv(eventadjectiv), value_(newValue_) {
     // Constructor body (if needed)
 }
-void Event::printEvent()
-{
+void Event::printEvent(){
 	std::cout << "# " << eventId_ << std::endl;
 	std::cout << "timestamp" << timestamp_ << std::endl;
 	std::cout << value_ << " " << eventadjectiv << std::endl;

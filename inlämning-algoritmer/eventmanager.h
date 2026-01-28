@@ -4,8 +4,7 @@
 #include "utility.h"
 enum class EventType { TEMP_EVENT = 1, BUTTON_EVENT = 2, MOTION_EVENT = 3 };
 
-class Event
-{
+class Event{
 public:
     Event(EventType type, std::string eventAdjectiv, int timeStamp, int Id, double value_);
     virtual ~Event() = default;
@@ -18,20 +17,16 @@ private:
     EventType type_;
 };
 
-namespace event_Type
-{
-    class TemperatureReading : public Event
-    {
+namespace event_Type{
+    class TemperatureReading : public Event{
     public:
         TemperatureReading(int timeStamp, int Id, double newValue_);
     };
-    class ButtonPress : public Event
-    {
+    class ButtonPress : public Event{
     public:
         ButtonPress(int timeStamp, int Id, double newValue_);
     };
-    class MotionRecord : public Event
-    {
+    class MotionRecord : public Event{
     public:
         MotionRecord(int timeStamp, int Id, double newValue_);
     };

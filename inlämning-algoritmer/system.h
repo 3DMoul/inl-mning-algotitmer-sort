@@ -4,12 +4,11 @@
 #include "eventmanager.h"
 #include "eventlist.h"
 
-namespace system_Manager
-{
+namespace system_Manager{
 	void run();
 }
 
-namespace system_Actions
-{
+namespace system_Actions{
 	void creat_Event(event_List* L);
+	void printList(event_List* head);
 }

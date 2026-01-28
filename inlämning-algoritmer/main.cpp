@@ -4,7 +4,6 @@
 #include "utility.h"
 
 
-int main()
-{
+int main(){
 	system_Manager::run();
 }

@@ -2,19 +2,16 @@
 
 
 
-void menu::printWholeMenu(std::function<void(const std::vector<std::string>&)> menuPrintFunc, const std::vector<std::string>& menu)
-{
+void menu::printWholeMenu(std::function<void(const std::vector<std::string>&)> menuPrintFunc, const std::vector<std::string>& menu){
 	std::cout << "-------------Main Menu-------------" << std::endl;
 	menuPrintFunc(menu);
 	std::cout << "-----------------------------------" << std::endl;
 
 }
-void menu::printMenuOptions(const std::vector<std::string>& menuItems)
-{
+void menu::printMenuOptions(const std::vector<std::string>& menuItems){
 	int startFrom = 1;
 	
-	for (auto& item : menuItems)
-	{
+	for (auto& item : menuItems){
 		if (startFrom < size(menuItems))
 			std::cout << "[" << startFrom++ << "]" << " " << item << std::endl;
 		else
@@ -22,22 +19,18 @@ void menu::printMenuOptions(const std::vector<std::string>& menuItems)
 	}
 
 }
-void menu::printEventTypes(const std::vector<std::string>& eventItems)
-{
+void menu::printEventTypes(const std::vector<std::string>& eventItems){
 	int startFrom = 1;
 
-	for (auto& item : eventItems)
-	{
+	for (auto& item : eventItems){
 			std::cout << "[" << startFrom++ << "]" << " " << item << std::endl;
 	}
 }
 // take menuStatus by reference so exitStatus() affects the original
-void menu::selectMenuItem(menuStatus& exit, event_List* List)
-{
+void menu::selectMenuItem(menuStatus& exit, event_List* List){
 	auto choice = static_cast<menu::menuChoice>(utilitys::inputValidation());
 	menu::clear_interface();
-	switch (choice)
-	{
+	switch (choice){
 	case menu::menuChoice::Event:
 		system_Actions::creat_Event(List);
 		break;
@@ -48,7 +41,7 @@ void menu::selectMenuItem(menuStatus& exit, event_List* List)
 
 		break;
 	case menu::menuChoice::List:
-
+		system_Actions::printList(List);
 		break;
 	case menu::menuChoice::Help:
 
