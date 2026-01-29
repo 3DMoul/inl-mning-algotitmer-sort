@@ -13,7 +13,10 @@ public:
 	bool queue_isFull(const Queue* q);
 	Queue* queue_create(int _capacity){
 		assert(_capacity < 0);
-
+		this->capacity = _capacity + 1;
+		this->front = 0;
+		this->back = 0;
+		buffer.resize(capacity);
 	}
 private:
 
