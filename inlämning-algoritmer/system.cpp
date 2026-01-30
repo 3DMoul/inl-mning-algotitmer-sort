@@ -47,6 +47,12 @@ void system_Actions::creat_Event(event_List*& L){
 
 
 }
+void system_Actions::sort_Event(event_List*& L) {
+
+}
+void system_Actions::search_Event(event_List* L) {
+
+}
 void system_Actions::printList(event_List* head){
 	event_List* current = head;
 	while (current->currentEvent != nullptr) {
@@ -54,4 +60,7 @@ void system_Actions::printList(event_List* head){
 		current = current->next;
 	}
 	std::cout << std::endl;
+}
+void system_Actions::help_func() {
+
 }

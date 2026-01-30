@@ -11,4 +11,7 @@ namespace system_Manager{
 namespace system_Actions{
 	void creat_Event(event_List*& L);
 	void printList(event_List* head);
+	void sort_Event(event_List*& L);
+	void search_Event(event_List* L);
+	void help_func();
 }

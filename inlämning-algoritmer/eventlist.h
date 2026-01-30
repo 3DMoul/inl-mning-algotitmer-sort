@@ -16,7 +16,9 @@ struct event_List{
 namespace list_Functions{
     
     int listSize(event_List* head);
-    
     event_List* insertAtFront(event_List*& head, Event*& new_Event);
-    
+    void List_destroy(event_List* List);
+    void List_append(event_List* List, Event e);
+    Event List_get(const event_List* List, int index);
+    void List_set(event_List* List, int index, Event e);
 }
