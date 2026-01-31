@@ -5,6 +5,7 @@ int list_Functions::listSize(event_List* head) {
     event_List* current = head;
     while (current->currentEvent != nullptr) {
         count++;
+        std::cout << count << std::endl;
         current = current->next;
 
     }

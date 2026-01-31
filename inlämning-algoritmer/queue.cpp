@@ -9,22 +9,22 @@ void Queue::queue_destroy(Queue* q){
 	delete q;
 }
 
-bool Queue::queue_enqueue(Queue* q, Event* e){
+bool Queue::queue_enqueue(Queue*& q, Event* e){
 	if (q == nullptr) return false;
-	assert(queue_isFull(q));
+	assert(!queue_isFull(q));
 	if ((int)q->buffer.size() < q->capacity) q->buffer.resize(q->capacity);
 	q->buffer[q->back] = e;
 	q->back = (q->back + 1) % q->capacity;
 	return true;
 }
 
-bool Queue::queue_dequeue(Queue* q, Event* out){
-	if (q == nullptr || out == nullptr) return false;
-	assert(queue_isEmpty(q));
-	*out = q->buffer[q->front];
+Event* Queue::queue_dequeue(Queue*& q){
+	assert(!queue_isEmpty(q));
+	Event* out;
+	out = q->buffer[q->front];
 	q->front = (q->front + 1) % q->capacity;
-	return true;
+	return out;
 }
 
-bool Queue::queue_isFull(const Queue* q) { return (back + 1) % capacity == front; }
-bool Queue::queue_isEmpty(const Queue* q) { return front == back; }
+bool Queue::queue_isFull(const Queue* q) { return (q->back + 1) % q->capacity == q->front; }
+bool Queue::queue_isEmpty(const Queue* q) { return q->front == q->back; }

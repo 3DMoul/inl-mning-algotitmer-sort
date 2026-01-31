@@ -1,19 +1,19 @@
 #include "system.h"
 
-static std::unique_ptr<Event> makeEvent(EventType type, event_List* L, int timeStamp){
+static std::unique_ptr<Event> makeEvent(EventType type, int listSize, int timeStamp){
 	double temp = 0.0;
-	int id = list_Functions::listSize(L);
-	std::cout << id << std::endl;
+	int id = listSize;
+	std::cout << "id " << id << std::endl;
 	switch (type){
 	case EventType::TEMP_EVENT: 
 		temp = utilitys::randomDecimalValue(0, 60);
-		return std::make_unique<event_Type::TemperatureReading>(timeStamp, id + 1, temp);
+		return std::make_unique<event_Type::TemperatureReading>(timeStamp, id, temp);
 	case EventType::BUTTON_EVENT:
 		temp = utilitys::randomValue(1, 10);
-		return std::make_unique<event_Type::ButtonPress>(timeStamp, id + 1, temp);
+		return std::make_unique<event_Type::ButtonPress>(timeStamp, id, temp);
 	case EventType::MOTION_EVENT : 
 		temp = utilitys::randomValue(20, 60);
-		return std::make_unique<event_Type::MotionRecord>(timeStamp, id + 1, temp);
+		return std::make_unique<event_Type::MotionRecord>(timeStamp, id, temp);
 
 	default: return nullptr;
 	}
@@ -28,24 +28,58 @@ void system_Manager::run(){
 	while (!menustatus.EXIT_Menu);
 }
 
-	/*std::cout << "What type of event is happening" << std::endl;
-	menu::printEventTypes(menu_Element::Eventtype);
-	std::cout << "Enter: " << std::endl;*/
 void system_Actions::creat_Event(event_List*& L){
 	std::cout << "how many event do you want to make" << std::endl;
 	int iterations = 0;
 	std::cin >> iterations;
-	Event* rawEventPtr;
+	int currentSize = list_Functions::listSize(L);
+	Event* eventPtr;
 	Queue* event_Queue = new Queue(iterations);
+	bool MultiTemp = false;
+	bool MultiButton = false;
+	bool MultiMotion = false;
+	int currentTempid = 0;
+	int currentButtonid = 0;
+	int currentMotionid = 0;
 	for (int i = 0; i < iterations; i++) {
-		auto event = static_cast<EventType>(utilitys::randomValue(1, 3));
+		auto event = static_cast<EventType>(utilitys::randomValue(1, 4));
+		if (event == EventType::TEMP_EVENT && MultiTemp == false){
+			MultiTemp = true;
+			currentTempid = currentSize + 1;
+			currentSize++;
+		}
+		else if (event == EventType::BUTTON_EVENT && MultiButton == false){
+			MultiButton = true;
+			currentButtonid = currentSize + 1;
+			currentSize++;
+		}
+		else if (event == EventType::MOTION_EVENT && MultiMotion == false){
+			MultiMotion = true;
+			currentMotionid = currentSize + 1;
+			currentSize++;
+		}
 		int timeStamp = utilitys::TimeGenerator();
-		auto newEvent = makeEvent(event, L, timeStamp);// make uniq_ptr
+		std::unique_ptr<Event> newEvent;
+		if (event == EventType::TEMP_EVENT && MultiTemp == true) {
+			newEvent = makeEvent(event, currentTempid, timeStamp);
+		}
+		else if (event == EventType::BUTTON_EVENT && MultiButton == true) {
+			newEvent = makeEvent(event, currentButtonid, timeStamp);
+		}
+		else if (event == EventType::MOTION_EVENT && MultiMotion == true) {
+			newEvent = makeEvent(event, currentMotionid, timeStamp);
+		}
+		
 		newEvent->printEvent();
-		rawEventPtr = newEvent.release(); // transfer ownership from uniq_ptr to event ptr
+		eventPtr = newEvent.release(); // transfer ownership from uniq_ptr to event ptr
+		event_Queue->queue_enqueue(event_Queue, eventPtr);
 	}
 	
-	L = list_Functions::insertAtFront(L, rawEventPtr);
+	while (!event_Queue->queue_isEmpty(event_Queue)){
+		Event* e = event_Queue->queue_dequeue(event_Queue);
+		L = list_Functions::insertAtFront(L, e);
+	}
+	event_Queue->queue_destroy(event_Queue);
 
 }
 void system_Actions::sorting_choice(int choice, event_List*& L){
@@ -81,5 +115,15 @@ void system_Actions::printList(event_List* head){
 	std::cout << std::endl;
 }
 void system_Actions::help_func() {
-
+	std::cout << " Event [1]: " << std::endl;
+	std::cout << " Lets you chosse how many event you want to make. And then creats one out of three types of events\n " <<
+		"(TEMP, BUTTON, MOTION)" << std::endl;
+	std::cout << " Sort [2]" << std::endl;
+	std::cout << " Lets you sort you  list with help of either\n " <<
+		"SelectSort for smaller dataset sizes(->o<-)\n with timecomplexity of O(n2)" <<
+		"OR QuickSort for bigger dataset sizes(<-O->) with timecomplexity of O(n*logn)\n" <<
+		"where you can sort by (eventtype, id, or timestamp) in ascending or descending order" << std::endl;
+	std::cout << " Search [3]" << std::endl;
+	std::cout << " List [4]" << std::endl;
+	std::cout << " EXIT [0]" << std::endl;
 }

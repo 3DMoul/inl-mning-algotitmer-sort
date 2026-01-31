@@ -13,9 +13,12 @@ Event::Event(EventType type, std::string eventadjectiv, int timeStamp, int Id, d
     // Constructor body (if needed)
 }
 void Event::printEvent(){
-	std::cout << "# " << eventId_ << std::endl;
-	std::cout << "timestamp" << timestamp_ << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
+	std::cout << "#" << eventId_ << std::endl;
+	std::cout << "Timestamp: " << timestamp_ << std::endl;
 	std::cout << value_ << " " << eventadjectiv << std::endl;
+    std::cout << "---------------------------------------" << std::endl;
+
 }
 
 int Event::get_TimeStamp_()
