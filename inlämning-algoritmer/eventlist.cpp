@@ -3,11 +3,11 @@
 int list_Functions::listSize(event_List* head) {
     int count = 0;
     event_List* current = head;
-    while (current->currentEvent != nullptr) {
+    if (current == nullptr)
+        return 0;
+    while (current != nullptr) {
         count++;
-        std::cout << count << std::endl;
         current = current->next;
-
     }
     return count;
 }

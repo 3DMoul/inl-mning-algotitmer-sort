@@ -3,7 +3,6 @@
 static std::unique_ptr<Event> makeEvent(EventType type, int listSize, int timeStamp){
 	double temp = 0.0;
 	int id = listSize;
-	std::cout << "id " << id << std::endl;
 	switch (type){
 	case EventType::TEMP_EVENT: 
 		temp = utilitys::randomDecimalValue(0, 60);
@@ -19,13 +18,13 @@ static std::unique_ptr<Event> makeEvent(EventType type, int listSize, int timeSt
 	}
 }
 void system_Manager::run(){
-	event_List* List = new event_List(nullptr);
-	menu::menuStatus menustatus;
-	do{
-		menu::printWholeMenu(menu::printMenuOptions, menu_Element::main);
-		menu::selectMenuItem(menustatus, List);
-	} 
-	while (!menustatus.EXIT_Menu);
+    event_List* List = nullptr; // empty list — do NOT create a dummy node with currentEvent == nullptr
+    menu::menuStatus menustatus;
+    do{
+        menu::printWholeMenu(menu::printMenuOptions, menu_Element::main);
+        menu::selectMenuItem(menustatus, List);
+    } 
+    while (!menustatus.EXIT_Menu);
 }
 
 void system_Actions::creat_Event(event_List*& L){
@@ -82,13 +81,15 @@ void system_Actions::creat_Event(event_List*& L){
 	event_Queue->queue_destroy(event_Queue);
 
 }
-void system_Actions::sorting_choice(int choice, event_List*& L){
+void system_Actions::sorting_choice(event_List*& L){
 	auto sortChoice = static_cast<sort_Manager::SortingChoice>(utilitys::inputValidation());
 	switch (sortChoice) {
 	case sort_Manager::SortingChoice::selectionSort:
-
+		sort_Manager::selectionSort(L);
+		break;
 	case sort_Manager::SortingChoice::quickSort:
-
+		sort_Manager::quickSort(L);
+		break;
 	default:
 		std::cout << "You enterd invalid option\n" <<
 					"you can only chose " << size(menu_Element::sortType) <<
@@ -98,9 +99,7 @@ void system_Actions::sorting_choice(int choice, event_List*& L){
 void system_Actions::sort_Event(event_List*& L) {
 	std::cout << "What sorting process do you want to use" << std::endl;
 	menu::printOptions(menu_Element::sortType);
-	int sortChoice = 0;
-	std::cin >> sortChoice;
-	sorting_choice(sortChoice, L);
+	sorting_choice(L);
 
 }
 void system_Actions::search_Event(event_List* L) {
@@ -108,8 +107,8 @@ void system_Actions::search_Event(event_List* L) {
 }
 void system_Actions::printList(event_List* head){
 	event_List* current = head;
-	while (current->currentEvent != nullptr) {
-		current->currentEvent->printEvent();
+	while (current != nullptr) {
+		if (current->currentEvent) current->currentEvent->printEvent();
 		current = current->next;
 	}
 	std::cout << std::endl;
@@ -117,13 +116,17 @@ void system_Actions::printList(event_List* head){
 void system_Actions::help_func() {
 	std::cout << " Event [1]: " << std::endl;
 	std::cout << " Lets you chosse how many event you want to make. And then creats one out of three types of events\n " <<
-		"(TEMP, BUTTON, MOTION)" << std::endl;
+		"(TEMP, BUTTON, MOTION)\n" <<
+		"and puts it in a linked list." << std::endl;
 	std::cout << " Sort [2]" << std::endl;
 	std::cout << " Lets you sort you  list with help of either\n " <<
 		"SelectSort for smaller dataset sizes(->o<-)\n with timecomplexity of O(n2)" <<
 		"OR QuickSort for bigger dataset sizes(<-O->) with timecomplexity of O(n*logn)\n" <<
-		"where you can sort by (eventtype, id, or timestamp) in ascending or descending order" << std::endl;
-	std::cout << " Search [3]" << std::endl;
-	std::cout << " List [4]" << std::endl;
-	std::cout << " EXIT [0]" << std::endl;
+		"where you can sort by (eventtype, id, or timestamp) in ascending or descending order." << std::endl;
+	std::cout << " Search [3]:" << std::endl;
+	std::cout << " Lets you search for events with id or event type." << std::endl;
+	std::cout << " List [4]:" << std::endl;
+	std::cout << " Lists all events from the linked list." << std::endl;
+	std::cout << " EXIT [0]:" << std::endl;
+	std::cout << " Exits the program." << std::endl;
 }
