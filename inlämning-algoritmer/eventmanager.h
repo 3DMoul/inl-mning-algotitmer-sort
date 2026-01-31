@@ -6,6 +6,7 @@ enum class EventType { TEMP_EVENT = 1, BUTTON_EVENT = 2, MOTION_EVENT = 3 };
 
 class Event{
 public:
+    Event();
     Event(EventType type, std::string eventAdjectiv, int timeStamp, int Id, double value_);
     virtual ~Event() = default;
     void printEvent();

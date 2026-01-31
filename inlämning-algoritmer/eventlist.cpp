@@ -28,9 +28,16 @@ void list_Functions::List_append(event_List* List, Event e)
 {
 }
 
-Event list_Functions::List_get(const event_List* List, int index)
+Event* list_Functions::List_get(const event_List* List, int id)
 {
-    return Event();
+    Event* current = List->currentEvent;
+    
+    if (List->currentEvent == nullptr)
+        return nullptr;
+    else if (!(current->get_EventId_() == id))
+        current = List->next->currentEvent;
+    else
+    return current;
 }
 
 void list_Functions::List_set(event_List* List, int index, Event e)

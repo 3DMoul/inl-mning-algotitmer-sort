@@ -28,26 +28,45 @@ void system_Manager::run(){
 	while (!menustatus.EXIT_Menu);
 }
 
-void system_Actions::creat_Event(event_List*& L){
-	std::cout << "What type of event is happening" << std::endl;
+	/*std::cout << "What type of event is happening" << std::endl;
 	menu::printEventTypes(menu_Element::Eventtype);
-	std::cout << "Enter: " << std::endl;
-	auto event = static_cast<EventType>(utilitys::inputValidation());
+	std::cout << "Enter: " << std::endl;*/
+void system_Actions::creat_Event(event_List*& L){
 	std::cout << "how many event do you want to make" << std::endl;
 	int iterations = 0;
 	std::cin >> iterations;
-
+	Event* rawEventPtr;
+	Queue* event_Queue = new Queue(iterations);
 	for (int i = 0; i < iterations; i++) {
+		auto event = static_cast<EventType>(utilitys::randomValue(1, 3));
 		int timeStamp = utilitys::TimeGenerator();
-		auto newEvent = makeEvent(event, L, timeStamp);
+		auto newEvent = makeEvent(event, L, timeStamp);// make uniq_ptr
 		newEvent->printEvent();
-		Event* rawEventPtr = newEvent.release(); // Transfer ownership
-		L = list_Functions::insertAtFront(L, rawEventPtr);
+		rawEventPtr = newEvent.release(); // transfer ownership from uniq_ptr to event ptr
 	}
-
+	
+	L = list_Functions::insertAtFront(L, rawEventPtr);
 
 }
+void system_Actions::sorting_choice(int choice, event_List*& L){
+	auto sortChoice = static_cast<sort_Manager::SortingChoice>(utilitys::inputValidation());
+	switch (sortChoice) {
+	case sort_Manager::SortingChoice::selectionSort:
+
+	case sort_Manager::SortingChoice::quickSort:
+
+	default:
+		std::cout << "You enterd invalid option\n" <<
+					"you can only chose " << size(menu_Element::sortType) <<
+					"\nTry again" << std::endl;
+	}
+}
 void system_Actions::sort_Event(event_List*& L) {
+	std::cout << "What sorting process do you want to use" << std::endl;
+	menu::printOptions(menu_Element::sortType);
+	int sortChoice = 0;
+	std::cin >> sortChoice;
+	sorting_choice(sortChoice, L);
 
 }
 void system_Actions::search_Event(event_List* L) {

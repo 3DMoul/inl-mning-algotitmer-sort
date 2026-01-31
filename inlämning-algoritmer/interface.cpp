@@ -17,7 +17,7 @@ void menu::printMenuOptions(const std::vector<std::string>& menuItems){
 	}
 
 }
-void menu::printEventTypes(const std::vector<std::string>& eventItems){
+void menu::printOptions(const std::vector<std::string>& eventItems){
 	int startFrom = 1;
 
 	for (auto& item : eventItems){

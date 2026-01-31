@@ -9,7 +9,7 @@ void Queue::queue_destroy(Queue* q){
 	delete q;
 }
 
-bool Queue::queue_enqueue(Queue* q, Event e){
+bool Queue::queue_enqueue(Queue* q, Event* e){
 	if (q == nullptr) return false;
 	assert(queue_isFull(q));
 	if ((int)q->buffer.size() < q->capacity) q->buffer.resize(q->capacity);
