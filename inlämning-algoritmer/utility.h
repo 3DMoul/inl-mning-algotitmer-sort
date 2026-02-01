@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+#include <string>
 
 namespace utilitys{
 	int inputValidation();
@@ -9,6 +9,6 @@ namespace utilitys{
 
 	int randomValue(int Max, int Min);
 
-	int TimeGenerator();
+	std::string TimeGenerator();
 
 }

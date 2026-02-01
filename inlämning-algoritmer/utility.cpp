@@ -22,8 +22,20 @@ int utilitys::randomValue(int Max, int Min){
     return rand() % (Min - Max) + Max;
 }
 
-int utilitys::TimeGenerator(){
-    time_t TimeStamp;
-    time(&TimeStamp);
-    return TimeStamp;
+std::string utilitys::TimeGenerator()
+{
+    std::tm timeInfo = {};
+    // i do this to get a random date in 2026
+    timeInfo.tm_mon = randomValue(0, 11);    // tm_mon = 0-11
+    timeInfo.tm_mday = randomValue(1, 28);   // tm_mday = 1-31, safer to use 1-28 to avoid invalid dates
+    timeInfo.tm_hour = randomValue(0, 23);   // 0-23 hours
+    timeInfo.tm_min = randomValue(0, 59);    // 0-59 minutes
+    timeInfo.tm_sec = randomValue(0, 59);    // 0-59 seconds
+
+    std::time_t timeStamp = std::mktime(&timeInfo);
+
+    char temp[26];
+    asctime_s(temp, sizeof(temp), &timeInfo);
+    temp[strlen(temp) - 1] = '\0'; // remove newline
+    return temp;
 }

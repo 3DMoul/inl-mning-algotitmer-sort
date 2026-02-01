@@ -1,6 +1,6 @@
 #include "system.h"
 
-static std::unique_ptr<Event> makeEvent(EventType type, int listSize, int timeStamp){
+static std::unique_ptr<Event> makeEvent(EventType type, int listSize, std::string timeStamp){
 	double temp = 0.0;
 	int id = listSize;
 	switch (type){
@@ -57,7 +57,7 @@ void system_Actions::creat_Event(event_List*& L){
 			currentMotionid = currentSize + 1;
 			currentSize++;
 		}
-		int timeStamp = utilitys::TimeGenerator();
+		std::string timeStamp = utilitys::TimeGenerator();
 		std::unique_ptr<Event> newEvent;
 		if (event == EventType::TEMP_EVENT && MultiTemp == true) {
 			newEvent = makeEvent(event, currentTempid, timeStamp);
@@ -81,26 +81,38 @@ void system_Actions::creat_Event(event_List*& L){
 	event_Queue->queue_destroy(event_Queue);
 
 }
-void system_Actions::sorting_choice(event_List*& L){
-	auto sortChoice = static_cast<sort_Manager::SortingChoice>(utilitys::inputValidation());
+void system_Actions::sort_Event(event_List*& L) {
+	std::cout << "What sorting process do you want to use" << std::endl;
+	menu::printOptions(menu_Element::sortType);
+	int sort_choice = utilitys::inputValidation();
+	std::cout << "Do you want it to be [A]scending or [D]escending" << std::endl;
+	char A_D = ' ';
+	std::cin >> A_D;
+	A_D = (char)toupper(A_D);
+	while (!(char)toupper(A_D) == 'A' && !(char)toupper(A_D) == 'D') {
+		std::cout << "Wrong input...\n" <<
+			"you have to choose between.\n"
+			<< "[A]scending or [D]escending" << std::endl;
+		std::cin >> A_D;
+	}
+
+	sorting_choice(L, sort_choice, A_D);
+
+}
+void system_Actions::sorting_choice(event_List*& L, int sc, char a_d){
+	auto sortChoice = static_cast<sort_Manager::SortingChoice>(sc);
 	switch (sortChoice) {
 	case sort_Manager::SortingChoice::selectionSort:
-		sort_Manager::selectionSort(L);
+		sort_Manager::selectionSort(L, a_d);
 		break;
 	case sort_Manager::SortingChoice::quickSort:
-		sort_Manager::quickSort(L);
+		sort_Manager::quickSort(L, a_d);
 		break;
 	default:
 		std::cout << "You enterd invalid option\n" <<
 					"you can only chose " << size(menu_Element::sortType) <<
 					"\nTry again" << std::endl;
 	}
-}
-void system_Actions::sort_Event(event_List*& L) {
-	std::cout << "What sorting process do you want to use" << std::endl;
-	menu::printOptions(menu_Element::sortType);
-	sorting_choice(L);
-
 }
 void system_Actions::search_Event(event_List* L) {
 
