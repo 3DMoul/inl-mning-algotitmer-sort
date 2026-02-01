@@ -72,6 +72,7 @@ void menu::sortingChoice(event_List*& L, int sc, char a_d) {
 			"\nTry again" << std::endl;
 	}
 }
+// help function shows what all menu options does
 void interFace::help_func() {
 	std::cout << " \nEvent [1]:\n " << std::endl;
 	std::cout << " Lets you chosse how many event you want to make.\n" <<

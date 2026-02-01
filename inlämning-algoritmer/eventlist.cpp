@@ -1,5 +1,5 @@
 #include "eventlist.h"
-
+// goes throu the whole list until nullptr and counts how big the list is
 int list_Functions::listSize(event_List* head) {
     int count = 0;
     event_List* current = head;
@@ -11,6 +11,7 @@ int list_Functions::listSize(event_List* head) {
     }
     return count;
 }
+// insert at the front of the list
 event_List* list_Functions::insertAtFront(event_List*& head, Event*& new_Event) {
     assert(new_Event != nullptr && "insertAtFront received null Event*");
 
@@ -33,12 +34,6 @@ void list_Functions::listDestroy(event_List*& List)
     }
     List = nullptr;
 }
-
-void list_Functions::listAppend(event_List* List, Event e)
-{
-    // placeholder - behaviour unchanged; implement if needed
-}
-
 Event* list_Functions::listGet(const event_List* List, int id)
 {
     if (List == nullptr) return nullptr;

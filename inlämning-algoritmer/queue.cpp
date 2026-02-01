@@ -7,7 +7,7 @@ Queue::Queue(int _capacity) {
 	buffer.resize(capacity);
 }
 void Queue::destroy(){
-	// clear and delete this instance (caller should not use the pointer afterwards)
+	// clear and delete this instance
 	buffer.clear();
 	front = 0;
 	back = 0;

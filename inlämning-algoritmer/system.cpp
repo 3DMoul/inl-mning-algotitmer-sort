@@ -19,9 +19,9 @@ static std::unique_ptr<Event> makeEvent(EventType type, int listSize, std::strin
 }
 void system_Manager::run(){
     event_List* List = nullptr; // empty list
-    menu::menuStatus menustatus;
+    menu::menuStatus menustatus; // exit status declared
     do{
-        menu::printWholeMenu(menu::printMenuOptions, menu_Element::main);
+        menu::printWholeMenu(menu::printMenuOptions, menu_Element::main);// print menu
         menu::selectMenuItem(menustatus, List);
     } 
     while (!menustatus.EXIT_Menu);
@@ -34,6 +34,8 @@ void system_Actions::createEvent(event_List*& L){
 	int currentSize = list_Functions::listSize(L);
 	Event* eventPtr;
 	Queue* event_Queue = new Queue(iterations);
+	// i use these bools to check if an id has been used so i can use the same id
+	// for a different events so it looks like it comes from the same sensor
 	bool MultiTemp = false;
 	bool MultiButton = false;
 	bool MultiMotion = false;
@@ -42,7 +44,7 @@ void system_Actions::createEvent(event_List*& L){
 	int currentMotionid = 0;
 	for (int i = 0; i < iterations; i++) {
 		auto event = static_cast<EventType>(utilitys::randomValue(1, 4));
-		if (event == EventType::TEMP_EVENT && MultiTemp == false){
+		if (event == EventType::TEMP_EVENT && MultiTemp == false){ // here it checks and when its true for one it locks that id
 			MultiTemp = true;
 			currentTempid = currentSize + 1;
 			currentSize++;
@@ -70,33 +72,33 @@ void system_Actions::createEvent(event_List*& L){
 		}
 		
 		newEvent->printEvent();
-		eventPtr = newEvent.release(); // transfer ownership
-		event_Queue->enqueue(eventPtr);
+		eventPtr = newEvent.release(); // transfer ownership from uniq_ptr to normal ptr
+		event_Queue->enqueue(eventPtr); // puts in queue
 	}
 	
 	while (!event_Queue->isEmpty()){
-		Event* e = event_Queue->dequeue();
+		Event* e = event_Queue->dequeue(); // puts in linked list
 		L = list_Functions::insertAtFront(L, e);
 	}
-	event_Queue->destroy();
+	event_Queue->destroy(); // deletes queue
 
 }
 void system_Actions::sortEvent(event_List*& L) {
 	std::cout << "What sorting process do you want to use" << std::endl;
 	menu::printOptions(menu_Element::sortType);
-	int sortChoice = utilitys::inputValidation();
+	int sortChoice = utilitys::inputValidation(); // here is for choice of selections or quicksort
 	std::cout << "Do you want it to be [A]scending or [D]escending" << std::endl;
-	char A_D = ' ';
-	std::cin >> A_D;
-	A_D = (char)toupper(A_D);
-	while (!(char)toupper(A_D) == 'A' && !(char)toupper(A_D) == 'D') {
+	char ad = ' ';
+	std::cin >> ad; // here is for choice of decencing or ascending sorting
+	ad = (char)toupper(ad);
+	while (!(char)toupper(ad) == 'A' && !(char)toupper(ad) == 'D') {
 		std::cout << "Wrong input...\n" <<
 			"you have to choose between.\n"
 			<< "[A]scending or [D]escending" << std::endl;
-		std::cin >> A_D;
+		std::cin >> ad;
 	}
 
-	menu::sortingChoice(L, sortChoice, A_D);
+	menu::sortingChoice(L, sortChoice, ad);
 
 }
 void system_Actions::searchChoice(event_List* L) {
@@ -108,7 +110,7 @@ void system_Actions::searchChoice(event_List* L) {
 }
 void system_Actions::searchEvent(event_List* L, int id) {
 	event_List* current = L;
-	while (current != nullptr) {
+	while (current != nullptr) { // goes throu list until current is nullptr
 		if (current->currentEvent->get_EventId_() == id) {
 			current->currentEvent->printEvent();
 		}
@@ -118,8 +120,8 @@ void system_Actions::searchEvent(event_List* L, int id) {
 
 void system_Actions::printList(event_List* head){
 	event_List* current = head;
-	while (current != nullptr) {
-		if (current->currentEvent) current->currentEvent->printEvent();
+	while (current != nullptr) { // goes throu list until current is nullptr
+		current->currentEvent->printEvent();
 		current = current->next;
 	}
 	std::cout << std::endl;
