@@ -100,11 +100,22 @@ void system_Actions::sortEvent(event_List*& L) {
 
 }
 void system_Actions::searchChoice(event_List* L) {
-
+	std::cout << "What what event Id do you want" << std::endl;
+	std::cout << "Input:";
+	int id = 0;
+	id = utilitys::inputValidation();
+	searchEvent(L, id);
 }
 void system_Actions::searchEvent(event_List* L, int id) {
-
+	event_List* current = L;
+	while (current != nullptr) {
+		if (current->currentEvent->get_EventId_() == id) {
+			current->currentEvent->printEvent();
+		}
+		current = current->next;
+	}
 }
+
 void system_Actions::printList(event_List* head){
 	event_List* current = head;
 	while (current != nullptr) {

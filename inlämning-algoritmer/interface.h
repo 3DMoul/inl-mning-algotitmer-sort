@@ -25,7 +25,7 @@ namespace menu{
 	// take menuStatus by reference so changes propagate to caller
 	void selectMenuItem(struct menuStatus& exit, event_List*& List);
 	void sortingChoice(event_List*& L, int sc, char a_d);
-	void clear_interface();
+	void clearinterface();
 	struct menuStatus{
 		bool EXIT_Menu = false;
 

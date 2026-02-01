@@ -28,7 +28,8 @@ event_List* sort_Manager::getTail(event_List* head) {
 }
 
 event_List* sort_Manager::partition(event_List* head, event_List* tail, char a_d) {
-
+    assert(head != nullptr);
+    assert(tail != nullptr);
     // Pivot is the first node
     event_List* pivot = head;
 

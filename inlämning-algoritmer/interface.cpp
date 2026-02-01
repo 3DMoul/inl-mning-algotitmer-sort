@@ -25,7 +25,7 @@ void menu::printOptions(const std::vector<std::string>& eventItems){
 	}
 }
 // clears text from before this was used
-void menu::clear_interface() { std::cout << "\033c"; }
+void menu::clearinterface() { std::cout << "\033c"; }
 // makes exit status true making the program end
 void menu::menuStatus::exitStatus(){ EXIT_Menu = true; }
 // take menuStatus by reference so exitStatus() affects the original
@@ -33,7 +33,7 @@ void menu::selectMenuItem(menuStatus& exit, event_List*& List){
 	std::cout << list_Functions::listSize(List) << std::endl;
 	auto choice = static_cast<menu::menuChoice>(utilitys::inputValidation());
 
-	menu::clear_interface();
+	menu::clearinterface();
 	switch (choice){
 	case menu::menuChoice::Tick:
 		system_Actions::createEvent(List);

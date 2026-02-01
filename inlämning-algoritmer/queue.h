@@ -1,9 +1,9 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <cassert>
 #include "eventmanager.h"
-#include <stdio.h>
-#include <assert.h>
+
 class Queue {
 public:
 	void destroy();

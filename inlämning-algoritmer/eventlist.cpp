@@ -11,10 +11,10 @@ int list_Functions::listSize(event_List* head) {
     }
     return count;
 }
-event_List* list_Functions::insertAtFront(event_List*& head, Event*& new_Event){
-    // Create a new node with the given data
+event_List* list_Functions::insertAtFront(event_List*& head, Event*& new_Event) {
+    assert(new_Event != nullptr && "insertAtFront received null Event*");
+
     event_List* new_node = new event_List(new_Event);
-    // link
     new_node->next = head;
     return new_node;
 }
