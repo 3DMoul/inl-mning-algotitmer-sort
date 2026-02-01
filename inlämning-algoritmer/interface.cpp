@@ -44,7 +44,7 @@ void menu::selectMenuItem(menuStatus& exit, event_List*& List){
 		system_Actions::printList(List);
 		break;
 	case menu::menuChoice::Help:
-		system_Actions::help_func();
+		interFace::help_func();
 		break;
 	case menu::menuChoice::EXIT:
 		exit.exitStatus();
