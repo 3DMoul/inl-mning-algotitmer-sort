@@ -21,8 +21,18 @@ event_List* list_Functions::insertAtFront(event_List*& head, Event*& new_Event){
     return new_node;
 }
 
-void list_Functions::List_destroy(event_List* List)
+void list_Functions::List_destroy(event_List*& List)
 {
+    event_List* current = List;
+    while (current != nullptr) {
+        event_List* next = current->next;
+        if (current->currentEvent != nullptr) {
+            delete current->currentEvent;
+            current->currentEvent = nullptr;
+        }
+        delete current;
+        current = next;
+    }
 }
 
 void list_Functions::List_append(event_List* List, Event e)
@@ -39,8 +49,4 @@ Event* list_Functions::List_get(const event_List* List, int id)
         current = List->next->currentEvent;
     else
     return current;
-}
-
-void list_Functions::List_set(event_List* List, int index, Event e)
-{
 }

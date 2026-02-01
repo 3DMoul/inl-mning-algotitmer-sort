@@ -25,6 +25,7 @@ void system_Manager::run(){
         menu::selectMenuItem(menustatus, List);
     } 
     while (!menustatus.EXIT_Menu);
+	list_Functions::List_destroy(List);
 }
 
 void system_Actions::creat_Event(event_List*& L){
@@ -114,8 +115,22 @@ void system_Actions::sorting_choice(event_List*& L, int sc, char a_d){
 					"\nTry again" << std::endl;
 	}
 }
-void system_Actions::search_Event(event_List* L) {
-
+void system_Actions::search_choice(event_List* L) {
+	std::cout << "What what event Id do you want" << std::endl;
+	std::cout << "Input:";
+	int id = 0;
+	id = utilitys::inputValidation();
+	search_Event(L, id);
+}
+void system_Actions::search_Event(event_List* L, int id){
+	event_List* current = L;
+	while (current->currentEvent != nullptr) {
+		if (current->currentEvent->get_EventId_() == id) {
+			current->currentEvent->printEvent();
+			current = current->next;
+		}
+	}
+	list_Functions::List_destroy(current);
 }
 void system_Actions::printList(event_List* head){
 	event_List* current = head;

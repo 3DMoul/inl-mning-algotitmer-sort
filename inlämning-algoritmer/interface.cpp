@@ -45,7 +45,7 @@ void menu::selectMenuItem(menuStatus& exit, event_List*& List){
 		system_Actions::sort_Event(List);
 		break;
 	case menu::menuChoice::Search:
-		system_Actions::search_Event(List);
+		system_Actions::search_choice(List);
 		break;
 	case menu::menuChoice::Help:
 		interFace::help_func();

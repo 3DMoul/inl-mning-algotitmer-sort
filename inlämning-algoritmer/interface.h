@@ -14,6 +14,8 @@ namespace menu_Element{
 	const std::vector<std::string> EventType = { "TEMPERATURE", "BUTTON", "MOTION" };
 
 	const std::vector<std::string> sortType = { "SelectSort", "QuickSort" };
+
+
 }
 
 namespace menu{
