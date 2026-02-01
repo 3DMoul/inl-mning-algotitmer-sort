@@ -26,6 +26,7 @@ std::string utilitys::TimeGenerator()
 {
     std::tm timeInfo = {};
     // i do this to get a random date in 2026
+    timeInfo.tm_year = 2026-1900;
     timeInfo.tm_mon = randomValue(0, 11);    // tm_mon = 0-11
     timeInfo.tm_mday = randomValue(1, 28);   // tm_mday = 1-31, safer to use 1-28 to avoid invalid dates
     timeInfo.tm_hour = randomValue(0, 23);   // 0-23 hours

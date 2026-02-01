@@ -57,6 +57,21 @@ void menu::selectMenuItem(menuStatus& exit, event_List*& List){
 		break;
 	}
 }
+void menu::sorting_choice(event_List*& L, int sc, char a_d) {
+	auto sortChoice = static_cast<sort_Manager::SortingChoice>(sc);
+	switch (sortChoice) {
+	case sort_Manager::SortingChoice::selectionSort:
+		sort_Manager::selectionSort(L, a_d);
+		break;
+	case sort_Manager::SortingChoice::quickSort:
+		sort_Manager::quickSort(L, a_d);
+		break;
+	default:
+		std::cout << "You enterd invalid option\n" <<
+			"you can only chose " << size(menu_Element::sortType) <<
+			"\nTry again" << std::endl;
+	}
+}
 void interFace::help_func() {
 	std::cout << " \nEvent [1]:\n " << std::endl;
 	std::cout << " Lets you chosse how many event you want to make.\n" <<

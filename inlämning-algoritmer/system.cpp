@@ -97,24 +97,10 @@ void system_Actions::sort_Event(event_List*& L) {
 		std::cin >> A_D;
 	}
 
-	sorting_choice(L, sort_choice, A_D);
+	menu::sorting_choice(L, sort_choice, A_D);
 
 }
-void system_Actions::sorting_choice(event_List*& L, int sc, char a_d){
-	auto sortChoice = static_cast<sort_Manager::SortingChoice>(sc);
-	switch (sortChoice) {
-	case sort_Manager::SortingChoice::selectionSort:
-		sort_Manager::selectionSort(L, a_d);
-		break;
-	case sort_Manager::SortingChoice::quickSort:
-		sort_Manager::quickSort(L, a_d);
-		break;
-	default:
-		std::cout << "You enterd invalid option\n" <<
-					"you can only chose " << size(menu_Element::sortType) <<
-					"\nTry again" << std::endl;
-	}
-}
+
 void system_Actions::search_choice(event_List* L) {
 	std::cout << "What what event Id do you want" << std::endl;
 	std::cout << "Input:";

@@ -27,6 +27,7 @@ namespace menu{
 	// take menuStatus by reference so changes propagate to caller
 	// took help from copilot for this one
 	void selectMenuItem(struct menuStatus& exit, event_List*& List);
+	void sorting_choice(event_List*& L, int sc, char a_d);
 	void clear_interface();
 	// have this to hold the exit status if the user tries to exit
 	struct menuStatus{
