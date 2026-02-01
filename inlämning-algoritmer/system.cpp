@@ -18,17 +18,16 @@ static std::unique_ptr<Event> makeEvent(EventType type, int listSize, std::strin
 	}
 }
 void system_Manager::run(){
-    event_List* List = nullptr; // empty list — do NOT create a dummy node with currentEvent == nullptr
+    event_List* List = nullptr; // empty list
     menu::menuStatus menustatus;
     do{
         menu::printWholeMenu(menu::printMenuOptions, menu_Element::main);
         menu::selectMenuItem(menustatus, List);
     } 
     while (!menustatus.EXIT_Menu);
-	list_Functions::List_destroy(List);
 }
 
-void system_Actions::creat_Event(event_List*& L){
+void system_Actions::createEvent(event_List*& L){
 	std::cout << "how many event do you want to make" << std::endl;
 	int iterations = 0;
 	std::cin >> iterations;
@@ -71,21 +70,21 @@ void system_Actions::creat_Event(event_List*& L){
 		}
 		
 		newEvent->printEvent();
-		eventPtr = newEvent.release(); // transfer ownership from uniq_ptr to event ptr
-		event_Queue->queue_enqueue(event_Queue, eventPtr);
+		eventPtr = newEvent.release(); // transfer ownership
+		event_Queue->enqueue(eventPtr);
 	}
 	
-	while (!event_Queue->queue_isEmpty(event_Queue)){
-		Event* e = event_Queue->queue_dequeue(event_Queue);
+	while (!event_Queue->isEmpty()){
+		Event* e = event_Queue->dequeue();
 		L = list_Functions::insertAtFront(L, e);
 	}
-	event_Queue->queue_destroy(event_Queue);
+	event_Queue->destroy();
 
 }
-void system_Actions::sort_Event(event_List*& L) {
+void system_Actions::sortEvent(event_List*& L) {
 	std::cout << "What sorting process do you want to use" << std::endl;
 	menu::printOptions(menu_Element::sortType);
-	int sort_choice = utilitys::inputValidation();
+	int sortChoice = utilitys::inputValidation();
 	std::cout << "Do you want it to be [A]scending or [D]escending" << std::endl;
 	char A_D = ' ';
 	std::cin >> A_D;
@@ -97,26 +96,14 @@ void system_Actions::sort_Event(event_List*& L) {
 		std::cin >> A_D;
 	}
 
-	menu::sorting_choice(L, sort_choice, A_D);
+	menu::sortingChoice(L, sortChoice, A_D);
 
 }
+void system_Actions::searchChoice(event_List* L) {
 
-void system_Actions::search_choice(event_List* L) {
-	std::cout << "What what event Id do you want" << std::endl;
-	std::cout << "Input:";
-	int id = 0;
-	id = utilitys::inputValidation();
-	search_Event(L, id);
 }
-void system_Actions::search_Event(event_List* L, int id){
-	event_List* current = L;
-	while (current->currentEvent != nullptr) {
-		if (current->currentEvent->get_EventId_() == id) {
-			current->currentEvent->printEvent();
-			current = current->next;
-		}
-	}
-	list_Functions::List_destroy(current);
+void system_Actions::searchEvent(event_List* L, int id) {
+
 }
 void system_Actions::printList(event_List* head){
 	event_List* current = head;

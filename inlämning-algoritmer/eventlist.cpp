@@ -14,14 +14,12 @@ int list_Functions::listSize(event_List* head) {
 event_List* list_Functions::insertAtFront(event_List*& head, Event*& new_Event){
     // Create a new node with the given data
     event_List* new_node = new event_List(new_Event);
-    // Make the next of the new node point to the current
-    // head
+    // link
     new_node->next = head;
-    // Return the new node as the new head of the list
     return new_node;
 }
 
-void list_Functions::List_destroy(event_List*& List)
+void list_Functions::listDestroy(event_List*& List)
 {
     event_List* current = List;
     while (current != nullptr) {
@@ -33,20 +31,22 @@ void list_Functions::List_destroy(event_List*& List)
         delete current;
         current = next;
     }
+    List = nullptr;
 }
 
-void list_Functions::List_append(event_List* List, Event e)
+void list_Functions::listAppend(event_List* List, Event e)
 {
+    // placeholder - behaviour unchanged; implement if needed
 }
 
-Event* list_Functions::List_get(const event_List* List, int id)
+Event* list_Functions::listGet(const event_List* List, int id)
 {
-    Event* current = List->currentEvent;
-    
-    if (List->currentEvent == nullptr)
-        return nullptr;
-    else if (!(current->get_EventId_() == id))
-        current = List->next->currentEvent;
-    else
-    return current;
+    if (List == nullptr) return nullptr;
+    const event_List* cur = List;
+    while (cur) {
+        if (cur->currentEvent && cur->currentEvent->get_EventId_() == id)
+            return cur->currentEvent;
+        cur = cur->next;
+    }
+    return nullptr;
 }

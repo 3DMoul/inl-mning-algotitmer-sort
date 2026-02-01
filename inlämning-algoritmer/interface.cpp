@@ -35,17 +35,17 @@ void menu::selectMenuItem(menuStatus& exit, event_List*& List){
 
 	menu::clear_interface();
 	switch (choice){
-	case menu::menuChoice::Event:
-		system_Actions::creat_Event(List);
+	case menu::menuChoice::Tick:
+		system_Actions::createEvent(List);
 		break;
 	case menu::menuChoice::List:
 		system_Actions::printList(List);
 		break;
 	case menu::menuChoice::Sort:
-		system_Actions::sort_Event(List);
+		system_Actions::sortEvent(List);
 		break;
 	case menu::menuChoice::Search:
-		system_Actions::search_choice(List);
+		system_Actions::searchChoice(List);
 		break;
 	case menu::menuChoice::Help:
 		interFace::help_func();
@@ -57,7 +57,7 @@ void menu::selectMenuItem(menuStatus& exit, event_List*& List){
 		break;
 	}
 }
-void menu::sorting_choice(event_List*& L, int sc, char a_d) {
+void menu::sortingChoice(event_List*& L, int sc, char a_d) {
 	auto sortChoice = static_cast<sort_Manager::SortingChoice>(sc);
 	switch (sortChoice) {
 	case sort_Manager::SortingChoice::selectionSort:

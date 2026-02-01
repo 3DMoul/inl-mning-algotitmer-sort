@@ -1,30 +1,35 @@
 #include "queue.h"
-
-void Queue::queue_destroy(Queue* q){
-	if (q == nullptr) return;
-	q->buffer.clear();
-	q->front = 0;
-	q->back = 0;
-	q->capacity = 0;
-	delete q;
+Queue::Queue(int _capacity) {
+	assert(_capacity > 0);
+	this->capacity = _capacity + 1;
+	this->front = 0;
+	this->back = 0;
+	buffer.resize(capacity);
+}
+void Queue::destroy(){
+	// clear and delete this instance (caller should not use the pointer afterwards)
+	buffer.clear();
+	front = 0;
+	back = 0;
+	capacity = 0;
+	delete this;
 }
 
-bool Queue::queue_enqueue(Queue*& q, Event* e){
-	if (q == nullptr) return false;
-	assert(!queue_isFull(q));
-	if ((int)q->buffer.size() < q->capacity) q->buffer.resize(q->capacity);
-	q->buffer[q->back] = e;
-	q->back = (q->back + 1) % q->capacity;
+bool Queue::enqueue(Event* e){
+	assert(e != nullptr);
+	assert(!isFull());
+	if ((int)buffer.size() < capacity) buffer.resize(capacity);
+	buffer[back] = e;
+	back = (back + 1) % capacity;
 	return true;
 }
 
-Event* Queue::queue_dequeue(Queue*& q){
-	assert(!queue_isEmpty(q));
-	Event* out;
-	out = q->buffer[q->front];
-	q->front = (q->front + 1) % q->capacity;
+Event* Queue::dequeue(){
+	assert(!isEmpty());
+	Event* out = buffer[front];
+	front = (front + 1) % capacity;
 	return out;
 }
 
-bool Queue::queue_isFull(const Queue* q) { return (q->back + 1) % q->capacity == q->front; }
-bool Queue::queue_isEmpty(const Queue* q) { return q->front == q->back; }
+bool Queue::isFull() const { return (back + 1) % capacity == front; }
+bool Queue::isEmpty() const { return front == back; }
