@@ -113,20 +113,3 @@ void system_Actions::printList(event_List* head){
 	}
 	std::cout << std::endl;
 }
-void system_Actions::help_func() {
-	std::cout << " Event [1]: " << std::endl;
-	std::cout << " Lets you chosse how many event you want to make. And then creats one out of three types of events\n " <<
-		"(TEMP, BUTTON, MOTION)\n" <<
-		"and puts it in a linked list." << std::endl;
-	std::cout << " Sort [2]" << std::endl;
-	std::cout << " Lets you sort you  list with help of either\n " <<
-		"SelectSort for smaller dataset sizes(->o<-)\n with timecomplexity of O(n2)" <<
-		"OR QuickSort for bigger dataset sizes(<-O->) with timecomplexity of O(n*logn)\n" <<
-		"where you can sort by (eventtype, id, or timestamp) in ascending or descending order." << std::endl;
-	std::cout << " Search [3]:" << std::endl;
-	std::cout << " Lets you search for events with id or event type." << std::endl;
-	std::cout << " List [4]:" << std::endl;
-	std::cout << " Lists all events from the linked list." << std::endl;
-	std::cout << " EXIT [0]:" << std::endl;
-	std::cout << " Exits the program." << std::endl;
-}

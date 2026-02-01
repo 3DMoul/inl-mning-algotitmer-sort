@@ -16,5 +16,4 @@ namespace system_Actions{
 	void sort_Event(event_List*& L);
 	void sorting_choice(event_List*& L);
 	void search_Event(event_List* L);
-	void help_func();
 }

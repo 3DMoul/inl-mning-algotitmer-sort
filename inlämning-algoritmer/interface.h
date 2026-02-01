@@ -26,9 +26,15 @@ namespace menu{
 	// took help from copilot for this one
 	void selectMenuItem(struct menuStatus& exit, event_List*& List);
 	void clear_interface();
+	// have this to hold the exit status if the user tries to exit
 	struct menuStatus{
 		bool EXIT_Menu = false;
 
 		void exitStatus();
 	};
+}
+namespace interFace
+{
+	void help_func();
+
 }
