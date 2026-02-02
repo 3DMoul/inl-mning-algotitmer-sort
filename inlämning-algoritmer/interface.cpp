@@ -87,10 +87,10 @@ void interFace::help_func() {
 	std::cout << " Lets you sort you  list with help of either\n " <<
 				"SelectSort for smaller dataset sizes(->o<-) with timecomplexity of O(n2)\n" <<
 				" OR QuickSort for bigger dataset sizes(<-O->) with timecomplexity of O(n*logn)\n" <<
-				" where you can sort by (eventtype, id, or timestamp) in ascending or descending order." << std::endl;
+				" where you can sort by Id in ascending or descending order." << std::endl;
 	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << " \nSearch [4]:\n " << std::endl;
-	std::cout << " Lets you search for events with id or event type." << std::endl;
+	std::cout << " Lets you search for events with Id." << std::endl;
 	std::cout << "--------------------------------------------" << std::endl;
 	std::cout << " \nEXIT [0]:\n " << std::endl;
 	std::cout << " Exits the program." << std::endl;
